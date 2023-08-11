@@ -16,16 +16,10 @@ export default class PhotoApi {
                 res.status(400);
                 return res.json({ message: 'id is not defined' });
             }
-            const photo = await this.#persistenceService.findBy(Photo, { id: parseInt(req.params.id) });
-            return res.json(photo);
-        });
 
-        this.#express.get("/photo/:id", async (req, res) => {
-            return res.json(
-                await this.#persistenceService.findBy(Photo, {
-                    id: parseInt(req.params.id),
-                })
-            );
+            const parsedId = parseInt(req.params.id);
+            const photo = await this.#persistenceService.findBy(Photo, { id: parsedId });
+            return res.json(photo);
         });
 
         this.#express.post("/photo", async (req, res) => {
