@@ -10,7 +10,7 @@ async function startServer() {
     const typeOrmPersistence = new TypeOrmService(dataSource);
     const mockedTypeOrmPersistence = new MockPersistenceService();
     
-    new PhotoApi(mockedTypeOrmPersistence, app);
+    new PhotoApi(typeOrmPersistence, app);
     
     app.get("/", (req, res) => {
         return res.send("hello from conestoga");
