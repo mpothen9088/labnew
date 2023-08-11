@@ -22,10 +22,14 @@ export default class TypeOrmService implements PersistenceService {
         }
     }
 
-    // Dummy findBy implementation for demonstration purposes
+    // Implemented findBy method using TypeORM's query methods
     async findBy<T = unknown>(entity: { new(): T }, criteria: any): Promise<T | null> {
-        // Here, you would typically use TypeORM's query methods to find an entity based on criteria.
-        // For simplicity, I'm returning null to signify "entity not found."
-        return null;
+        try {
+            const repository = this.#dataSource.getRepository(entity);
+            const result = await repository.findOne(criteria);
+            return result || null;
+        } catch (error) {
+            throw new Error(`TypeOrmService: Error fetching data with criteria ${JSON.stringify(criteria)}: ${error}`);
+        }
     }
 }
