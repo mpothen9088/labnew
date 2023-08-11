@@ -1,4 +1,4 @@
-import { DataSource } from "typeorm";
+import { DataSource, ObjectLiteral } from "typeorm";
 import PersistenceService from "../persistenceService";
 
 export default class TypeOrmService implements PersistenceService {
@@ -13,7 +13,7 @@ export default class TypeOrmService implements PersistenceService {
     }
 
     // Generalized insert method to accept any type of content
-    async insert<T = unknown>(content: T, location: string): Promise<boolean> {
+    async insert<T extends ObjectLiteral>(content: T, location: string): Promise<boolean> {
         try {
             await this.#dataSource.manager.save(content);
             return true;
@@ -23,7 +23,7 @@ export default class TypeOrmService implements PersistenceService {
     }
 
     // Implemented findBy method using TypeORM's query methods
-    async findBy<T = unknown>(entity: { new(): T }, criteria: any): Promise<T | null> {
+    async findBy<T extends ObjectLiteral>(entity: { new(): T }, criteria: any): Promise<T | null> {
         try {
             const repository = this.#dataSource.getRepository(entity);
             const result = await repository.findOne(criteria);
