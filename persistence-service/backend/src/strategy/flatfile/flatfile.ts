@@ -35,8 +35,9 @@ export default class FlatfilePersistence implements PersistenceService {
         try {
             const data: T[] = JSON.parse(fs.readFileSync(this.getPath("flatfileDb", `${_entity.name}.json`), 'utf8'));
             const found = data.find(item => {
+                const typedItem = item as any;  // Type assertion
                 for (let key in criteria) {
-                    if (item[key] !== criteria[key]) {
+                    if (typedItem[key] !== criteria[key]) {
                         return false;
                     }
                 }
@@ -44,7 +45,8 @@ export default class FlatfilePersistence implements PersistenceService {
             });
             return found || null;
         } catch (error) {
-            throw new Error(`Error reading from flatfile: ${error.message}`);
+            const typedError = error as Error;  // Type assertion
+            throw new Error(`Error reading from flatfile: ${typedError.message}`);
         }
     }
 
