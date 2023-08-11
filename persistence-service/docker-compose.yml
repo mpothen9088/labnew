@@ -13,6 +13,7 @@ services:
       web-services:
         aliases:
           - backend.${BACKEND_DOMAIN:-127-0-0-1.sslip.io}
+
   db:
     image: postgres:latest
     volumes:
@@ -36,6 +37,8 @@ services:
       - db
     networks:
       - web-services
+    ports:
+      - "8000:8000"
 
 networks:
   web-services:
