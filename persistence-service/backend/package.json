@@ -15,6 +15,7 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.6",
     "@types/node": "^18.0.0",
+    "@types/supertest": "^2.x.x",  // Added this line
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "eslint": "^8.18.0",
