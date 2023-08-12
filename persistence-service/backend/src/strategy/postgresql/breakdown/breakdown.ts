@@ -1,25 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('Trucks')
-export class Truck {
+@Entity('Breakdowns')
+export class Breakdown {
   @PrimaryGeneratedColumn()
+  breakdown_id: number;
+
+  @Column('int')
   truck_id: number;
 
-  @Column({
-    type: 'varchar',
-    length: 100,
-  })
-  brand: string;
+  @Column('int')
+  mechanic_id: number;
 
   @Column('int')
-  load: number;
-
-  @Column('int')
-  capacity: number;
-
-  @Column('int')
-  year: number;
-
-  @Column('int')
-  number_of_repairs: number;
+  estimated_repair_time: number;
 }
