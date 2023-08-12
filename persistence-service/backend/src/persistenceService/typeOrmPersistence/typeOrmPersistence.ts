@@ -1,5 +1,3 @@
-// typeOrmPersistence.ts
-
 import { DataSource, ObjectLiteral } from "typeorm";
 import PersistenceService from "../persistenceService";
 
@@ -30,6 +28,26 @@ export default class TypeOrmService implements PersistenceService {
             return result || null;
         } catch (error) {
             throw new Error(`TypeOrmService: Error fetching data with criteria ${JSON.stringify(criteria)}: ${error}`);
+        }
+    }
+
+    async update<T extends ObjectLiteral>(id: number, content: T): Promise<boolean> {
+        try {
+            const repository = this.#dataSource.getRepository(content.constructor as any);
+            const result = await repository.update(id, content);
+            return !!result.affected;
+        } catch (error) {
+            throw new Error(`TypeOrmService: Error updating data with ID ${id}: ${error}`);
+        }
+    }
+
+    async delete<T extends ObjectLiteral>(id: number, entity: { new(): T }): Promise<boolean> {
+        try {
+            const repository = this.#dataSource.getRepository(entity);
+            const result = await repository.delete(id);
+            return !!result.affected;
+        } catch (error) {
+            throw new Error(`TypeOrmService: Error deleting data with ID ${id}: ${error}`);
         }
     }
 }
