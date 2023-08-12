@@ -5,6 +5,7 @@ import { postgresDataSource } from './strategy/postgresql/configure';
 import TruckApi from './strategy/postgresql/truck';
 import EmployeeApi from './strategy/postgresql/employee';
 import DriverApi from './strategy/postgresql/driver';
+import MechanicApi from './strategy/postgresql/mechanic';
 
 async function startServer() {
     const app = express();
@@ -19,6 +20,7 @@ async function startServer() {
     new TruckApi(mockedTypeOrmPersistence, app);
     new EmployeeApi(mockedTypeOrmPersistence, app);
     new DriverApi(mockedTypeOrmPersistence, app);
+    new MechanicApi(mockedTypeOrmPersistence, app);
     
     app.get("/", (req, res) => {
         return res.send("Road Freight Transportation company");
