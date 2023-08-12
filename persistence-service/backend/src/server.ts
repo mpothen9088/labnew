@@ -4,6 +4,7 @@ import TypeOrmService from './persistenceService/typeOrmPersistence/typeOrmPersi
 import { postgresDataSource } from './strategy/postgresql/configure';
 import TruckApi from './strategy/postgresql/truck';
 import EmployeeApi from './strategy/postgresql/employee';
+import DriverApi from './strategy/postgresql/driver';
 
 async function startServer() {
     const app = express();
@@ -17,6 +18,7 @@ async function startServer() {
     
     new TruckApi(mockedTypeOrmPersistence, app);
     new EmployeeApi(mockedTypeOrmPersistence, app);
+    new DriverApi(mockedTypeOrmPersistence, app);
     
     app.get("/", (req, res) => {
         return res.send("Road Freight Transportation company");
