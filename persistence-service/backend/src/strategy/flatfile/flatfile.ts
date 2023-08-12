@@ -50,6 +50,42 @@ export default class FlatfilePersistence implements PersistenceService {
         }
     }
 
+    async update<T = unknown>(id: number, content: T, location: string): Promise<boolean> {
+        try {
+            const data: T[] = JSON.parse(fs.readFileSync(this.getPath("flatfileDb", `${location}.json`), 'utf8'));
+            const index = data.findIndex(item => (item as any).id === id);  // Assuming each item has an 'id' property
+
+            if (index === -1) {
+                return false;
+            }
+
+            data[index] = { ...data[index], ...content };
+            fs.writeFileSync(this.getPath("flatfileDb", `${location}.json`), JSON.stringify(data));
+            return true;
+        } catch (error) {
+            const typedError = error as Error;  // Type assertion
+            throw new Error(`Error updating in flatfile: ${typedError.message}`);
+        }
+    }
+
+    async delete<T = unknown>(id: number, location: string): Promise<boolean> {
+        try {
+            const data: T[] = JSON.parse(fs.readFileSync(this.getPath("flatfileDb", `${location}.json`), 'utf8'));
+            const initialLength = data.length;
+            const newData = data.filter(item => (item as any).id !== id);  // Assuming each item has an 'id' property
+
+            if (newData.length === initialLength) {
+                return false;
+            }
+
+            fs.writeFileSync(this.getPath("flatfileDb", `${location}.json`), JSON.stringify(newData));
+            return true;
+        } catch (error) {
+            const typedError = error as Error;  // Type assertion
+            throw new Error(`Error deleting from flatfile: ${typedError.message}`);
+        }
+    }
+
     private getPath(...dir: string[]) {
         return path.join(__dirname, ...dir);
     }
