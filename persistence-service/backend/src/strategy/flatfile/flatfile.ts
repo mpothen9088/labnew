@@ -1,6 +1,7 @@
 import PersistenceService from "../../persistenceService";
 import fs from "fs";
 import path from "path";
+import { ObjectLiteral } from "typeorm";
 
 export default class FlatfilePersistence implements PersistenceService {
     constructor() {
