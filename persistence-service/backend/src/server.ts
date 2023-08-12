@@ -10,6 +10,7 @@ import BreakdownApi from './strategy/postgresql/breakdown';
 import CustomerApi from './strategy/postgresql/customer';
 import ShipmentApi from './strategy/postgresql/shipment';
 import TripApi from './strategy/postgresql/trip';
+import TripDriverApi from './strategy/postgresql/tripdriver';
 
 async function startServer() {
     const app = express();
@@ -29,6 +30,7 @@ async function startServer() {
     new CustomerApi(mockedTypeOrmPersistence, app);
     new ShipmentApi(mockedTypeOrmPersistence, app);
     new TripApi(mockedTypeOrmPersistence, app);
+    new TripDriverApi(mockedTypeOrmPersistence, app);
     
     app.get("/", (req, res) => {
         return res.send("Road Freight Transportation company");
