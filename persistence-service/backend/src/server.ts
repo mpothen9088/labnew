@@ -2,7 +2,7 @@ import express from 'express';
 import MockPersistenceService from './persistenceService/typeOrmPersistence/mockTypeOrmService';
 import TypeOrmService from './persistenceService/typeOrmPersistence/typeOrmPersistence';
 import { postgresDataSource } from './strategy/postgresql/configure';
-import PhotoApi from './strategy/postgresql/photo';
+import TruckApi from './strategy/postgresql/truck';
 
 async function startServer() {
     const app = express();
@@ -14,10 +14,10 @@ async function startServer() {
     const typeOrmPersistence = new TypeOrmService(dataSource);
     const mockedTypeOrmPersistence = new MockPersistenceService();
     
-    new PhotoApi(mockedTypeOrmPersistence, app);
+    new TruckApi(mockedTypeOrmPersistence, app);
     
     app.get("/", (req, res) => {
-        return res.send("hello from conestoga");
+        return res.send("Road Freight Transportation company");
     });
     
     app.listen(8000, () => console.log('express server started'));
