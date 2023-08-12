@@ -8,6 +8,7 @@ import DriverApi from './strategy/postgresql/driver';
 import MechanicApi from './strategy/postgresql/mechanic';
 import BreakdownApi from './strategy/postgresql/breakdown';
 import CustomerApi from './strategy/postgresql/customer';
+import ShipmentApi from './strategy/postgresql/shipment';
 
 async function startServer() {
     const app = express();
@@ -25,6 +26,7 @@ async function startServer() {
     new MechanicApi(mockedTypeOrmPersistence, app);
     new BreakdownApi(mockedTypeOrmPersistence, app);
     new CustomerApi(mockedTypeOrmPersistence, app);
+    new ShipmentApi(mockedTypeOrmPersistence, app);
     
     app.get("/", (req, res) => {
         return res.send("Road Freight Transportation company");
