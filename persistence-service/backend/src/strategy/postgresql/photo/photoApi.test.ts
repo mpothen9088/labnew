@@ -8,11 +8,6 @@ describe('PhotoApi CRUD operations', () => {
     app.use(express.json());
     new PhotoApi(new MockPersistenceService(), app);
 
-    it('should return 404 when fetching a photo by its ID', async () => {
-        const response = await request(app).get('/photo/1');
-        expect(response.status).toBe(404);
-    });
-
     it('should create a new photo and return 200', async () => {
         const photoData = {
             name: 'Test Photo',
@@ -20,6 +15,11 @@ describe('PhotoApi CRUD operations', () => {
             filename: 'test.jpg'
         };
         const response = await request(app).post('/photo').send(photoData);
+        expect(response.status).toBe(200);
+    });
+
+    it('should return 200 when fetching a photo by its ID', async () => {
+        const response = await request(app).get('/photo/1');
         expect(response.status).toBe(200);
     });
 

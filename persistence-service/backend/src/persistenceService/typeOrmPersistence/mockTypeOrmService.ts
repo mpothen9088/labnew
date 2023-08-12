@@ -15,6 +15,19 @@ export default class MockPersistenceService implements PersistenceService {
   async findBy<T = unknown>(entity: new () => T, criteria: any): Promise<T | null> {
     // Mock implementation for findBy
     console.log(`Mock: Find by criteria in ${entity.name}`);
+
+    // Return a mock photo object if the entity name is 'Photo'
+    if (entity.name === 'Photo') {
+        return {
+            id: criteria.id,
+            name: 'Mock Photo',
+            description: 'This is a mock photo description',
+            filename: 'mockphoto.jpg',
+            views: 0,
+            isPublished: true
+        } as any;
+    }
+
     return null;
   }
 
