@@ -1,2 +1,2 @@
-export { default } from "./photoApi";
-export { Photo } from "./photo";
+export { default } from "./truckApi";
+export { Truck } from "./truck";
