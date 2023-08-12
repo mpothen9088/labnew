@@ -1,6 +1,6 @@
 import express from 'express';
 import request from 'supertest';
-import TruckApi from './truckApi';  // Assuming you've renamed the PhotoApi to TruckApi for the Trucks table
+import TruckApi from './truckApi';
 import MockPersistenceService from '../../../persistenceService/typeOrmPersistence/mockTypeOrmService';
 
 describe('TruckApi CRUD operations', () => {
