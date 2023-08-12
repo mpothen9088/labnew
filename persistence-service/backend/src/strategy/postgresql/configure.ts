@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import { Truck } from "./truck/truck";
 import { Employee } from "./employee/employee";
 import { Driver } from "./driver/driver";
-import { Mechanic } from "./mechanic/mechanic";customer
+import { Mechanic } from "./mechanic/mechanic";
 import { Customer } from "./customer/customer";
 import { Breakdown } from "./breakdown/breakdown";
 import { Shipment } from "./shipment/shipment";
