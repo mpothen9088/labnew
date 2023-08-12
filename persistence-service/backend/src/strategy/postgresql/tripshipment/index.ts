@@ -1,2 +1,2 @@
-export { default } from "./truckApi";
-export { Truck } from "./truck";
+export { default } from "./tripshipmentApi";
+export { TripShipment } from "./tripshipment";
