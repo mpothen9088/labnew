@@ -11,6 +11,7 @@ import CustomerApi from './strategy/postgresql/customer';
 import ShipmentApi from './strategy/postgresql/shipment';
 import TripApi from './strategy/postgresql/trip';
 import TripDriverApi from './strategy/postgresql/tripdriver';
+import TripShipmentApi from './strategy/postgresql/tripshipment';
 
 async function startServer() {
     const app = express();
@@ -31,6 +32,7 @@ async function startServer() {
     new ShipmentApi(mockedTypeOrmPersistence, app);
     new TripApi(mockedTypeOrmPersistence, app);
     new TripDriverApi(mockedTypeOrmPersistence, app);
+    new TripShipmentApi(mockedTypeOrmPersistence, app);
     
     app.get("/", (req, res) => {
         return res.send("Road Freight Transportation company");
