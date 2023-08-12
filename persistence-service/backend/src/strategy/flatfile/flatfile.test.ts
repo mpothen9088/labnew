@@ -56,7 +56,7 @@ describe("flatfile", () => {
         fs.existsSync(getPath("flatfileDb", "fooExample.json"))
       ).toBeTruthy();
 
-      flatfilePersistence.insert<FooExample>(fooData, "fooExample");
+      flatfilePersistence.insert<FooExample>(fooData);  // Fixed this line
 
       console.log(fs.readFileSync(getPath("flatfileDb", "fooExample.json")));
 
