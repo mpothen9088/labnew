@@ -1,9 +1,9 @@
 import { Express } from "express";
 import PersistenceService from "../../../persistenceService/persistenceService";
-import { Truck } from "./truck";
+import { Employee } from "./employee";
 import MockPersistenceService from "../../../persistenceService/typeOrmPersistence/mockTypeOrmService";
 
-export default class TruckApi {
+export default class EmployeeApi {
     #persistenceService: PersistenceService;
     #express: Express;
 
@@ -11,78 +11,76 @@ export default class TruckApi {
         this.#persistenceService = persistenceService;
         this.#express = express;
 
-        // GET route to fetch a truck by its ID
-        this.#express.get("/truck/:id", async (req, res) => {
+        // GET route to fetch an employee by its ID
+        this.#express.get("/employee/:id", async (req, res) => {
             const parsedId = parseInt(req.params.id);
-            const truck = await this.#persistenceService.findBy(Truck, { truck_id: parsedId });
-            if (truck) {
-                return res.json(truck);
+            const employee = await this.#persistenceService.findBy(Employee, { employee_id: parsedId });
+            if (employee) {
+                return res.json(employee);
             } else {
                 // Only return a 404 if using the real TypeOrmService
                 if (this.#persistenceService instanceof MockPersistenceService) {
                     return res.json({ message: 'Using mock service, always returns 200' });
                 } else {
-                    return res.status(404).json({ message: 'Truck not found' });
+                    return res.status(404).json({ message: 'Employee not found' });
                 }
             }
         });
 
-        // POST route to create a new truck
-        this.#express.post("/truck", async (req, res) => {
+        // POST route to create a new employee
+        this.#express.post("/employee", async (req, res) => {
             const { body } = req;
 
-            const truck = new Truck();
-            truck.brand = body.brand;
-            truck.load = body.load;
-            truck.capacity = body.capacity;
-            truck.year = body.year;
-            truck.number_of_repairs = body.number_of_repairs;
+            const employee = new Employee();
+            employee.first_name = body.first_name;
+            employee.last_name = body.last_name;
+            employee.seniority = body.seniority;
 
             try {
-                await this.#persistenceService.insert(truck, "Truck");
-                console.log(`Truck has been created with id: ${truck.truck_id}`);
+                await this.#persistenceService.insert(employee, "Employee");
+                console.log(`Employee has been created with id: ${employee.employee_id}`);
                 res.status(200);
                 return res.json({
-                    truck_id: truck.truck_id,
+                    employee_id: employee.employee_id,
                 });
             } catch (err) {
                 res.status(503);
                 return res.json({
-                    error: "Truck creation failed in db."
+                    error: "Employee creation failed in db."
                 });
             }
         });
 
-        // PUT route to update a truck by its ID
-        this.#express.put("/truck/:id", async (req, res) => {
+        // PUT route to update an employee by its ID
+        this.#express.put("/employee/:id", async (req, res) => {
             const parsedId = parseInt(req.params.id);
-            const updatedTruck = req.body;
+            const updatedEmployee = req.body;
 
             try {
-                const success = await this.#persistenceService.update(parsedId, updatedTruck);
+                const success = await this.#persistenceService.update(parsedId, updatedEmployee);
                 if (success) {
-                    return res.json({ message: 'Truck updated successfully' });
+                    return res.json({ message: 'Employee updated successfully' });
                 } else {
-                    return res.status(404).json({ message: 'Truck not found' });
+                    return res.status(404).json({ message: 'Employee not found' });
                 }
             } catch (err) {
-                return res.status(503).json({ error: "Truck update failed in db." });
+                return res.status(503).json({ error: "Employee update failed in db." });
             }
         });
 
-        // DELETE route to delete a truck by its ID
-        this.#express.delete("/truck/:id", async (req, res) => {
+        // DELETE route to delete an employee by its ID
+        this.#express.delete("/employee/:id", async (req, res) => {
             const parsedId = parseInt(req.params.id);
 
             try {
-                const success = await this.#persistenceService.delete(parsedId, Truck);
+                const success = await this.#persistenceService.delete(parsedId, Employee);
                 if (success) {
-                    return res.json({ message: 'Truck deleted successfully' });
+                    return res.json({ message: 'Employee deleted successfully' });
                 } else {
-                    return res.status(404).json({ message: 'Truck not found' });
+                    return res.status(404).json({ message: 'Employee not found' });
                 }
             } catch (err) {
-                return res.status(503).json({ error: "Truck deletion failed in db." });
+                return res.status(503).json({ error: "Employee deletion failed in db." });
             }
         });
     }
