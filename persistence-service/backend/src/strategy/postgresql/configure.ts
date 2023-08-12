@@ -8,6 +8,7 @@ import { Breakdown } from "./breakdown/breakdown";
 import { Shipment } from "./shipment/shipment";
 import { Trip } from "./trip/trip";
 import { TripDriver } from "./tripdriver/tripdriver";
+import { TripShipment } from "./tripshipment/tripshipment";
 
 export const postgresDataSource = new DataSource({
   type: "postgres",
@@ -16,7 +17,7 @@ export const postgresDataSource = new DataSource({
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  entities: [Truck,Employee,Driver,Mechanic,Breakdown,Customer,Shipment,Trip,TripDriver],
+  entities: [Truck,Employee,Driver,Mechanic,Breakdown,Customer,Shipment,Trip,TripDriver,TripShipment],
   synchronize: true,
   logging: false,
 });
