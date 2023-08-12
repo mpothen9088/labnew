@@ -1,2 +1,2 @@
 export { default } from "./tripdriverApi";
-export { Tripdriver } from "./tripdriver";
+export { TripDriver } from "./tripdriver";
