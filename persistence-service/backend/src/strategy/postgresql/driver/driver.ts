@@ -1,25 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Employee } from "./employee";
 
-@Entity('Trucks')
-export class Truck {
+@Entity('Drivers')
+export class Driver {
   @PrimaryGeneratedColumn()
-  truck_id: number;
+  driver_id: number;
+
+  @ManyToOne(() => Employee)
+  @JoinColumn({ name: "employee_id" })  // This sets up the foreign key relationship
+  employee: Employee;
 
   @Column({
     type: 'varchar',
     length: 100,
   })
-  brand: string;
-
-  @Column('int')
-  load: number;
-
-  @Column('int')
-  capacity: number;
-
-  @Column('int')
-  year: number;
-
-  @Column('int')
-  number_of_repairs: number;
+  category: string;
 }
