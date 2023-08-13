@@ -6,7 +6,6 @@ Persistence-service is a backend service designed to manage and persist data for
 
 ## Prerequisites
 
-* Node.js
 * Docker
 * Docker Compose
 
