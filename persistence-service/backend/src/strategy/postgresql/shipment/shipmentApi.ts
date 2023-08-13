@@ -3,7 +3,7 @@ import PersistenceService from "../../../persistenceService/persistenceService";
 import { Shipment } from "./shipment";
 import MockPersistenceService from "../../../persistenceService/typeOrmPersistence/mockTypeOrmService";
 
-export default class ShipmentApi {  // Renamed class
+export default class ShipmentApi {
     #persistenceService: PersistenceService;
     #express: Express;
 
