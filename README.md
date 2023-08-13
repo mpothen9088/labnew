@@ -66,4 +66,4 @@ Results will be displayed in the console.
 
 * From the integration-tests directory, run: docker-compose up —build
 
-*  Integration test in integration-tests/src/smoke.test.ts will run and results will be displayed in the console.
+*  Integration test in integration-tests/src/integration.test.ts will run and results will be displayed in the console.
