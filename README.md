@@ -60,7 +60,7 @@ Results will be displayed in the console.
 
 ## Integration testing
 
-* Open /persistence-service/backend/src/server.ts file and ensure: const USE_MOCK = false;   This will run typeOrmPersistence.
+* Open /persistence-service/backend/src/server.ts file and ensure: const USE_MOCK = false;   This will run typeOrmPersistence and API can interact with database
 
 * From the integration-tests directory, run: docker-compose up —build
 
