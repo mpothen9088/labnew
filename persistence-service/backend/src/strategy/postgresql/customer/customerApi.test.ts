@@ -10,8 +10,8 @@ describe('CustomerApi CRUD operations', () => {
 
     it('should create a new customer and return 200', async () => {
         const customerData = {
-            name: 'John Doe',
-            address: '123 Main St, City, Country',
+            name: 'Pothen',
+            address: 'Univeristy Ave, Waterloo',
             phone_number1: '123-456-7890',
             phone_number2: '098-765-4321'
         };
@@ -26,8 +26,8 @@ describe('CustomerApi CRUD operations', () => {
 
     it('should update a customer by its ID and return 200', async () => {
         const updatedData = {
-            name: 'Jane Doe',
-            address: '456 Another St, City, Country'
+            name: 'Manu Pothen',
+            address: 'Sunview Street, Waterloo'
         };
         const response = await request(app).put('/customer/1').send(updatedData);
         expect(response.status).toBe(200);
