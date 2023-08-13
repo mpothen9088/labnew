@@ -57,3 +57,11 @@ sudo docker exec -u root -it persistence-service_backend_1 npm test -- Api.test.
 
 This command runs all test suites matching /Api.test.ts/i. 
 Results will be displayed in the console.
+
+## Integration testing
+
+* Open /persistence-service/backend/src/server.ts file and ensure: const USE_MOCK = false;   This will run typeOrmPersistence.
+
+* From the integration-tests directory, run: docker-compose up —build
+
+*  Integration test in integration-tests/src/smoke.test.ts will run and results will be displayed in the console.
