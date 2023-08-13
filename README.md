@@ -16,6 +16,7 @@ The project uses the following main dependencies:
 * typeorm: For ORM-based database operations.
 * pg: PostgreSQL client for Node.js.
 * axios: For making HTTP requests.
+* Node.js
 
 ## Configuration
 
