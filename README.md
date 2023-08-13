@@ -56,7 +56,8 @@ Similarly, check for remaining tables:
 From the persistence-service directory, run:
 sudo docker exec -u root -it persistence-service_backend_1 npm test -- Api.test.ts
 
-This command runs all test suites matching /Api.test.ts/i. 
+This command runs all test suites matching /Api.test.ts
+
 Results will be displayed in the console.
 
 ## Integration testing
