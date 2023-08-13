@@ -1,16 +1,16 @@
-#Persistence Service
+# Persistence Service
 
-#Introduction
+## Introduction
 
 Persistence-service is a backend service designed to manage and persist data for various entities like trucks, employees, shipments, etc.
 
-#Prerequisites
+## Prerequisites
 
 * Node.js
 * Docker
 * Docker Compose
 
-#Dependencies
+## Dependencies
 
 The project uses the following main dependencies:
 * express: For setting up the server.
@@ -18,11 +18,11 @@ The project uses the following main dependencies:
 * pg: PostgreSQL client for Node.js.
 * axios: For making HTTP requests.
 
-#Configuration
+## Configuration
 
 Environment variables are provided in docker-compose.yml file.
 
-#Running the Service
+## Running the Service
 
 * Open /persistence-service/backend/src/server.ts file and ensure: const USE_MOCK = true;   This will run mockedTypeOrmPersistence.
 
@@ -31,7 +31,7 @@ Environment variables are provided in docker-compose.yml file.
 
 Note: Perform the below steps once the container is up and running.
 
-#Validate API Endpoints
+## Validate API Endpoints
 
 APIs for truck:
 * GET /truck/:id: Fetches data from the truck table by its ID.
@@ -50,7 +50,7 @@ Similarly, check for remaining tables:
 * tripdriver
 * tripshipment
 
-#Unit testing
+## Unit testing
 
 From the root directory, run:
 sudo docker exec -u root -it persistence-service_backend_1 npm test -- Api.test.ts
