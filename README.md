@@ -6,6 +6,7 @@ Persistence-service is a backend service designed to manage and persist data for
 
 ## Prerequisites
 
+* Node.js
 * Docker
 * Docker Compose
 
@@ -16,7 +17,6 @@ The project uses the following main dependencies:
 * typeorm: For ORM-based database operations.
 * pg: PostgreSQL client for Node.js.
 * axios: For making HTTP requests.
-* Node.js
 
 ## Configuration
 
