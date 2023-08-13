@@ -26,7 +26,8 @@ Environment variables are provided in docker-compose.yml file.
 
 * Open /persistence-service/backend/src/server.ts file and ensure: const USE_MOCK = true;   This will run mockedTypeOrmPersistence.
 
-* From the root directory, run: docker-compose up —build  
+* From the persistence-service directory, run: docker-compose up —build
+  
 * The service will be available at http://localhost:80.
 
 Note: Perform the below steps once the container is up and running.
