@@ -13,26 +13,30 @@ import TripApi from './strategy/postgresql/trip';
 import TripDriverApi from './strategy/postgresql/tripdriver';
 import TripShipmentApi from './strategy/postgresql/tripshipment';
 
+const USE_MOCK = true;  // Set this to false to use the actual TypeOrmService
+
 async function startServer() {
     const app = express();
     
-    // Add the middleware to parse JSON request bodies
+    // Middleware to parse JSON request bodies
     app.use(express.json());
 
     const dataSource = await postgresDataSource.initialize();
     const typeOrmPersistence = new TypeOrmService(dataSource);
     const mockedTypeOrmPersistence = new MockPersistenceService();
     
-    new TruckApi(mockedTypeOrmPersistence, app);
-    new EmployeeApi(mockedTypeOrmPersistence, app);
-    new DriverApi(mockedTypeOrmPersistence, app);
-    new MechanicApi(mockedTypeOrmPersistence, app);
-    new BreakdownApi(mockedTypeOrmPersistence, app);
-    new CustomerApi(mockedTypeOrmPersistence, app);
-    new ShipmentApi(mockedTypeOrmPersistence, app);
-    new TripApi(mockedTypeOrmPersistence, app);
-    new TripDriverApi(mockedTypeOrmPersistence, app);
-    new TripShipmentApi(mockedTypeOrmPersistence, app);
+    const persistence = USE_MOCK ? mockedTypeOrmPersistence : typeOrmPersistence;
+
+    new TruckApi(persistence, app);
+    new EmployeeApi(persistence, app);
+    new DriverApi(persistence, app);
+    new MechanicApi(persistence, app);
+    new BreakdownApi(persistence, app);
+    new CustomerApi(persistence, app);
+    new ShipmentApi(persistence, app);
+    new TripApi(persistence, app);
+    new TripDriverApi(persistence, app);
+    new TripShipmentApi(persistence, app);
     
     app.get("/", (req, res) => {
         return res.send("Road Freight Transportation company");
