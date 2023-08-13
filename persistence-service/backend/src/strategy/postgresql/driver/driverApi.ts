@@ -2,6 +2,7 @@ import { Express } from "express";
 import PersistenceService from "../../../persistenceService/persistenceService";
 import { Driver } from "./driver";
 import MockPersistenceService from "../../../persistenceService/typeOrmPersistence/mockTypeOrmService";
+import { Employee } from "../../../strategy/postgresql/employee/employee";
 
 export default class DriverApi {
     #persistenceService: PersistenceService;
@@ -32,7 +33,7 @@ export default class DriverApi {
             const { body } = req;
 
             const driver = new Driver();
-            driver.employee_id = body.employee_id;
+            driver.employee = body.employee;
             driver.category = body.category;
 
             try {
